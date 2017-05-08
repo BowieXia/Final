@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Anton|Archivo+Black|Bevan|Francois+One|Luckiest+Guy|Open+Sans+Condensed:300,700|Paytone+One|Teko" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <script src="js/leaflet.js"></script>
+    <script src="js/leaflet.geometryutil.js"></script>
+    <script src="https://npmcdn.com/leaflet-geometryutil"></script>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="bottom_sidebar">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a>
+    </div>
+    <div class="left_sidebar">
+      <button id="Web_Title" class="vertical-line"> Park Nav</button>
+      <hr class="horizontal_01"> </hr>
+      <hr class="horizontal_02"> </hr>
+      <div  class="MapSideDiv">
+        <button id="MapButton" class="MapSideButton"> </button>
+      </div>
+      <hr class="horizontal_03"> </hr>
+      <div  class="NavSideDiv">
+        <button id="NavButton" class="NavSideButton"> </button>
+      </div>
+      <hr class="horizontal_04"> </hr>
+      <div  class="AnaSideDiv">
+        <button id="AnaButton" class="AnaSideButton"> </button>
+      </div>
+      <hr class="horizontal_05"> </hr>
+    </div>
+    <!-- Map -->
+    <div id="Cover_Page" class="cover">
+      <h1 id="Cover_Headline" class="Cover_Headline">Enjoy Your Life in Philly</h1>
+      <h2 id="Description" class="Description">If you live in Philadelphia, do not miss the wonderful parks in the city. Take a journey into those parks and start planning your weekend! Bike, Hike, or Drive! Have a great time!</h2>
+      <button id="StartButton" class="StartButton"></button>
+      <h2 id="Button_Description" class="Button_Description">Take a journey now!</h2>
+        <div id="MapDiv" class="MapDiv">
+          <button id="MapButton" class="MapButton"></button>
+          <hr class="vertical"> </hr>
+          <div class="DivWords"> Show Parks Map</div>
+        </div>
+        <div id="NavDiv" class="NavDiv">
+          <button id="NavButton" class="NavButton"></button>
+          <hr class="vertical"> </hr>
+          <div class="DivWords"> Let's Go </div>
+          <div> </div>
+        </div>
+        <div id="AnaDiv" class="AnaDiv">
+          <button id="AnaButton" class="AnaButton"></button>
+          <hr class="vertical"> </hr>
+          <div class="DivWords"> Do Some Analysis </div>
+          <div> </div>
+        </div>
+      </div>
+    <div id="map_1" class="map_1" style="visibility: hidden"></div>
+    <div id="map_2" class="map_2" style="visibility: hidden"></div>
+    <div id="map_3" class="map_3" style="visibility: hidden"></div>
+    <!-- Javascript Imports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
