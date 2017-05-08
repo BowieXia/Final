@@ -59,6 +59,8 @@ var cartoVizId_1 = 'd5d2d506-1587-11e7-92db-0e98b61680bf';
 // var cartoVizId_2 = 'd5d2d506-1587-11e7-92db-0e98b61680bf';
 var cartoVizId_3 = '1a92c9b0-1267-41cd-a7e9-6af9db3685bf';
 //https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
+//https://boaoxxh.carto.com/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/public_map
+//https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
 //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
 //https://boaoxxh.carto.com/viz/68bb0e6e-a7b1-11e6-b154-0ecd1babdde5/public_map
 //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
@@ -80,6 +82,9 @@ cartodb.createLayer(map_1, layerUrl_1)
  //    }).on('error', function(err) {
  //      console.log(err);
  //    });
+ //////////Set up map 2 data and layers
+ var GeojsonParks = "http://raw.githubusercontent.com/BowieXia/CPLN_692_Midterm/master/Zipcode.geojson";// TBD
+ L.control.mousePosition().addTo(map_2);
 
  cartodb.createLayer(map_3, layerUrl_3)
    .on('done', function(layer) {
