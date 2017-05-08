@@ -1,97 +1,7 @@
 // Leaflet map setup
-var map_1 = L.map('map_1', {
-  center: [39.952585, -75.162649],
-  zoom: 13
-});
+var latlng = [ -75.198051,39.955291];
 
-var map_2 = L.map('map_2', {
-  center: [39.952585, -75.162649],
-  zoom: 13
-});
 
-var map_3 = L.map('map_3', {
-  center: [39.952585, -75.162649],
-  zoom: 13
-});
-
-var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  subdomains: 'abcd',
-  minZoom: 0,
-  maxZoom: 20,
-  ext: 'png'
-}).addTo(map_1);
-
-var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  subdomains: 'abcd',
-  minZoom: 0,
-  maxZoom: 20,
-  ext: 'png'
-}).addTo(map_2);
-
-var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  subdomains: 'abcd',
-  minZoom: 0,
-  maxZoom: 20,
-  ext: 'png'
-}).addTo(map_3);
-
-// To add your Carto visualization, change cartoUserName and cartoVizId to your username and
-// project ID. These values can be found in the URL of your map on Carto:
-// - https://[cartoUserName].carto.com/[cartoVizId]
-
-// Unfortunately, only some visualizations styles are available in this method:
-//
-// - None
-// - Animated
-// - Pixel
-//
-// This is a bummer. But don't worry, we'll learn about how to do more powerful visualizations
-// with Carto next week when we learn about SQL
-
-// To add visualizations created with the Analysis feature, you will need to export the data to a
-// GeoJSON. From there, you can either import the GeoJSON to Carto or use Leaflet's L.geoJson.
-
-var cartoUserName = 'boaoxxh';
-var cartoVizId_1 = 'd5d2d506-1587-11e7-92db-0e98b61680bf';
-// var cartoVizId_2 = 'd5d2d506-1587-11e7-92db-0e98b61680bf';
-var cartoVizId_3 = '1a92c9b0-1267-41cd-a7e9-6af9db3685bf';
-//https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
-//https://boaoxxh.carto.com/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/public_map
-//https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
-//https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
-//https://boaoxxh.carto.com/viz/68bb0e6e-a7b1-11e6-b154-0ecd1babdde5/public_map
-//https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
-//https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
-var layerUrl_1 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_1+'/viz.json';
-// var layerUrl_2 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_2+'/viz.json';
-var layerUrl_3 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_3+'/viz.json';
-
-cartodb.createLayer(map_1, layerUrl_1)
-  .on('done', function(layer) {
-    layer.addTo(map_1);
-  }).on('error', function(err) {
-    console.log(err);
-  });
-
- // cartodb.createLayer(map_2, layerUrl_2)
- //    .on('done', function(layer) {
- //      layer.addTo(map_2);
- //    }).on('error', function(err) {
- //      console.log(err);
- //    });
- //////////Set up map 2 data and layers
- var GeojsonParks = "http://raw.githubusercontent.com/BowieXia/CPLN_692_Midterm/master/Zipcode.geojson";// TBD
- L.control.mousePosition().addTo(map_2);
-
- cartodb.createLayer(map_3, layerUrl_3)
-   .on('done', function(layer) {
-     layer.addTo(map_3);
-   }).on('error', function(err) {
-     console.log(err);
-   });
 
   function ShowCover(){
     $('#Cover_Page').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
@@ -117,6 +27,105 @@ cartodb.createLayer(map_1, layerUrl_1)
 
 
   $(document).ready(function() {
+
+    var map_1 = L.map('map_1', {
+      center: [39.952585, -75.162649],
+      zoom: 13
+    });
+
+    var map_2 = L.map('map_2', {
+      center: [39.952585, -75.162649],
+      zoom: 13
+    });
+
+    var map_3 = L.map('map_3', {
+      center: [39.952585, -75.162649],
+      zoom: 13
+    });
+
+    var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      minZoom: 0,
+      maxZoom: 20,
+      ext: 'png'
+    }).addTo(map_1);
+
+    var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      minZoom: 0,
+      maxZoom: 20,
+      ext: 'png'
+    }).addTo(map_2);
+    L.control.mousePosition().addTo(map_2);
+
+    var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      minZoom: 0,
+      maxZoom: 20,
+      ext: 'png'
+    }).addTo(map_3);
+
+    // To add your Carto visualization, change cartoUserName and cartoVizId to your username and
+    // project ID. These values can be found in the URL of your map on Carto:
+    // - https://[cartoUserName].carto.com/[cartoVizId]
+
+    // Unfortunately, only some visualizations styles are available in this method:
+    //
+    // - None
+    // - Animated
+    // - Pixel
+    //
+    // This is a bummer. But don't worry, we'll learn about how to do more powerful visualizations
+    // with Carto next week when we learn about SQL
+
+    // To add visualizations created with the Analysis feature, you will need to export the data to a
+    // GeoJSON. From there, you can either import the GeoJSON to Carto or use Leaflet's L.geoJson.
+
+    var cartoUserName = 'boaoxxh';
+    var cartoVizId_1 = 'd5d2d506-1587-11e7-92db-0e98b61680bf';
+    // var cartoVizId_2 = 'd5d2d506-1587-11e7-92db-0e98b61680bf';
+    //https://boaoxxh.carto.com/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/public_map
+    var cartoVizId_3 = '1a92c9b0-1267-41cd-a7e9-6af9db3685bf';
+    //https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
+    //https://boaoxxh.carto.com/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/public_map
+    //https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
+    //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
+    //https://boaoxxh.carto.com/viz/68bb0e6e-a7b1-11e6-b154-0ecd1babdde5/public_map
+    //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
+    //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
+    //https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json
+    //var layerUrl_1 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_1+'/viz.json';
+    // var layerUrl_2 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_2+'/viz.json';
+    //var layerUrl_3 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_3+'/viz.json';
+    var layerUrl_1 = "https://boaoxxh.carto.com/api/v2/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/viz.json";
+    var layerUrl_3 = "https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json";
+
+    cartodb.createLayer(map_1, layerUrl_1)
+      .on('done', function(layer) {
+        layer.addTo(map_1);
+      }).on('error', function(err) {
+        console.log(err);
+      });
+
+     // cartodb.createLayer(map_2, layerUrl_2)
+     //    .on('done', function(layer) {
+     //      layer.addTo(map_2);
+     //    }).on('error', function(err) {
+     //      console.log(err);
+     //    });
+     //////////Set up map 2 data and layers
+     //parks polygon layer
+
+
+     cartodb.createLayer(map_3, layerUrl_3)
+       .on('done', function(layer) {
+         layer.addTo(map_3);
+       }).on('error', function(err) {
+         console.log(err);
+       });
     // $('.Cover_Headline').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
     // $('.Description').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
     // $('.StartButton').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
@@ -124,7 +133,70 @@ cartodb.createLayer(map_1, layerUrl_1)
     // $('.MapDiv').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
     // $('.NavDiv').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
     // $('.AnaDiv').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
+    var featureGroup;
+    var ClosestGroup;
+    var LayerArray =[];
+    var GreenMarker = {
+      radius: 16,
+      fillColor: "#1abc9c",
+      color:"#e74c3c"
+    };
+    var BlueMarker = {
+      radius: 8,
+      fillColor: "#2980b9",
+      color:"#c0392b"
+    };
 
+    var GeojsonParks = "https://raw.githubusercontent.com/BowieXia/Final/master/data/ppr_assets.geojson";
+    $.ajax(GeojsonParks).done(function(data) {
+       parsedData = JSON.parse(data);
+       //console.log(parsedData.features);
+       featureGroup = L.geoJson(parsedData.features, {
+         style: myStyle,
+         onEachFeature: onEachFeature
+       }).addTo(map_2);
+      //  var LayerArray = jQuery.makeArray(featureGroup._layers);
+      //  console.log(LayerArray);
+        //console.log(featureGroup);
+       ClosestGroup = L.GeometryUtil.closest(map_2, LayerArray, latlng);
+       //console.log(ClosestGroup);
+       L.circleMarker([latlng[1],latlng[0]]).addTo(map_2).bindPopup("Given Point").setStyle(BlueMarker);
+       L.circleMarker([ClosestGroup.lng,ClosestGroup.lat],['color','red']).addTo(map_2).bindPopup("Closest to a given point").setStyle(GreenMarker);
+       featureGroup.eachLayer(eachFeatureFunction);
+     });
+     function onEachFeature(feature, layer) {
+       if (feature.properties) {
+           layer.bindPopup("Label:" + feature.properties.label + "<br />" + "Use:" + feature.properties.use_);
+       }
+       var Polygon = feature.geometry.coordinates[0][0];
+       LayerArray.push(Polygon);
+       //console.log(LayerArray);
+     }
+     var eachFeatureFunction = function(layer) {
+       layer.on('click', function (event) {
+         /* =====================
+         The following code will run every time a layer on the map is clicked.
+         Check out layer.feature to see some useful data about the layer that
+         you can use in your application.
+         ===================== */
+         //console.log(layer.feature.properties);
+
+         //var LayerID = featureGroup.getLayerId();
+
+         var LatLngBounds = layer.getBounds();
+         LayerID = layer._leaflet_id;
+         //console.log(LayerID);
+         //console.log(LatLngBounds);
+         map_2.fitBounds(LatLngBounds);
+       });
+     };
+     var myStyle = {
+         "color": "#27ae60",
+         "weight": 3,
+         "opacity": 0.65,
+         "fillColor": "#2ecc71",
+         "fillOpacity": 0.3
+     };
     // Weather Data Json pack
     // WeatherDataUrl = 'http://api.openweathermap.org/data/2.5/forecast?id=5164390&APPID={f7edb9d17abe4ba98ab0c5ac38c32fc7}';
     // $.getJSON(WeatherDataUrl, function(result){
@@ -164,10 +236,12 @@ cartodb.createLayer(map_1, layerUrl_1)
     $( ".NavDiv" ).mouseover(function(){
       $(this).css("top", "477px");
       $(this).css("left", "522px");
+
     });
     $( ".NavDiv" ).mouseout(function(){
       $(this).css("top", "480px");
       $(this).css("left", "525px");
+
     });
 
     $( ".AnaDiv" ).mouseover(function(){
@@ -272,6 +346,8 @@ cartodb.createLayer(map_1, layerUrl_1)
       }
       $('#map_2').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
       $('#map_2').css("visibility","visible");
+      $('.ClosestOnes').addClass('animated zoomIn').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomIn');});
+      $(".ClosestOnes").css("visibility","visible");
     });
     $(".NavSideButton").click(function(){
       if ($('#map_3').css('display') !== 'none') {
@@ -284,6 +360,8 @@ cartodb.createLayer(map_1, layerUrl_1)
       }
       $('#map_2').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
       $('#map_2').css("visibility","visible");
+      $('.ClosestOnes').addClass('animated zoomIn').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomIn');});
+      $(".ClosestOnes").css("visibility","visible");
     });
 
     //Analysis Page
@@ -312,4 +390,9 @@ cartodb.createLayer(map_1, layerUrl_1)
       $('#map_3').css("visibility","visible");
     });
 
+    $(".ClosestOnes").click(function(map_2,featureGroup,latlng){
+
+      //ClosestGroup = L.GeometryUtil.closestLayerSnap(map_2, featureGroup._layers, latlng);
+
+    });
   });

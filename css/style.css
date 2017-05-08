@@ -41,6 +41,18 @@ button:focus {
     -webkit-animation-delay: 0.4s;
 }
 
+.ClosestOnes {
+  position: absolute;
+  bottom: 60px;
+  left: 100px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background-color: white;
+  -webkit-animation-delay: 2s;
+}
+
 .cover {
   position: absolute;
   right: 0px;
