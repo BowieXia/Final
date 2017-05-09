@@ -80,13 +80,13 @@ Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/
   //https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json
   //https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json
   //https://boaoxxh.carto.com/api/v2/viz/05b2c8b3-a13d-4a21-bfff-c7f12f7d65f0/viz.json
-  var layerUrl = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_1+'/viz.json';
+  var layerUrl_1 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_1+'/viz.json';
   //var layerUrl_2 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_2+'/viz.json';
   var layerUrl_3 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_3+'/viz.json';
   // var layerUrl_1 = "https://boaoxxh.carto.com/api/v2/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/viz.json";
   // var layerUrl_3 = "https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json";
 
-  cartodb.createLayer(map_1, layerUrl)
+  cartodb.createLayer(map_1, layerUrl_1)
     .on('done', function(layer) {
       layer.addTo(map_1);
     }).on('error', function(err) {
@@ -142,7 +142,7 @@ Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/
     // $('.AnaDiv').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
     var featureGroup;
     var ClosestGroup;
-    var LayerArray =[];
+
     var GreenMarker = {
       radius: 16,
       fillColor: "#1abc9c",
@@ -166,18 +166,18 @@ Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/
       //  console.log(LayerArray);
         //console.log(featureGroup);
         //console.log(LayerArray);
-       ClosestGroup = L.GeometryUtil.closest(map_2, LayerArray, latlng);
-       //console.log(ClosestGroup);
-       L.circleMarker([latlng[1],latlng[0]]).addTo(map_2).bindPopup("Given Point").setStyle(BlueMarker);
-       L.circleMarker([ClosestGroup.lng,ClosestGroup.lat],['color','red']).addTo(map_2).bindPopup("Closest to a given point").setStyle(GreenMarker);
-       featureGroup.eachLayer(eachFeatureFunction);
+      //  ClosestGroup = L.GeometryUtil.closest(map_2, LayerArray, latlng);
+      //  //console.log(ClosestGroup);
+      //  L.circleMarker([latlng[1],latlng[0]]).addTo(map_2).bindPopup("Given Point").setStyle(BlueMarker);
+      //  L.circleMarker([ClosestGroup.lng,ClosestGroup.lat],['color','red']).addTo(map_2).bindPopup("Closest to a given point").setStyle(GreenMarker);
+      //  featureGroup.eachLayer(eachFeatureFunction);
      });
      function onEachFeature(feature, layer) {
        if (feature.properties) {
            layer.bindPopup("Label:" + feature.properties.label + "<br />" + "Use:" + feature.properties.use_);
        }
-       var Polygon = feature.geometry.coordinates[0][0];
-       LayerArray.push(Polygon);
+      //  var Polygon = feature.geometry.coordinates[0][0];
+      //  LayerArray.push(Polygon);
        //console.log(LayerArray);
      }
      var eachFeatureFunction = function(layer) {
@@ -514,7 +514,58 @@ Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/
     });
 
     $(".Locate").click(function(){
+      var arrayL = [];
+      var latlng_P = [-75.162649,39.952585];
+      $.ajax(GeojsonParks).done(function(data) {
+         parsedData = JSON.parse(data);
+         //console.log(parsedData.features);
+         featureGroup = L.geoJson(parsedData.features, {
+           style: myStyle,
+           onEachFeature: onEachFeature
+         }).addTo(map_2);
+        //  var LayerArray = jQuery.makeArray(featureGroup._layers);
+        //  console.log(LayerArray);
+          //console.log(featureGroup);
+          //console.log(LayerArray);
+         ClosestGroup = L.GeometryUtil.closest(map_2, arrayL, latlng_P);
+         //console.log(ClosestGroup);
+         L.circleMarker([latlng_P[1],latlng_P[0]]).addTo(map_2).bindPopup("Given Point").setStyle(BlueMarker);
+         L.circleMarker([ClosestGroup.lng,ClosestGroup.lat],['color','red']).addTo(map_2).bindPopup("Closest to a given point").setStyle(GreenMarker);
+         featureGroup.eachLayer(eachFeatureFunction);
+       });
+       function onEachFeature(feature, layer) {
+         if (feature.properties) {
+             layer.bindPopup("Label:" + feature.properties.label + "<br />" + "Use:" + feature.properties.use_);
+         }
+         var Polygon = feature.geometry.coordinates[0][0];
+         arrayL.push(Polygon);
+         //console.log(LayerArray);
+       }
+       var eachFeatureFunction = function(layer) {
+         layer.on('click', function (event) {
+           /* =====================
+           The following code will run every time a layer on the map is clicked.
+           Check out layer.feature to see some useful data about the layer that
+           you can use in your application.
+           ===================== */
+           //console.log(layer.feature.properties);
 
+           //var LayerID = featureGroup.getLayerId();
+
+           var LatLngBounds = layer.getBounds();
+           LayerID = layer._leaflet_id;
+           //console.log(LayerID);
+           //console.log(LatLngBounds);
+           map_2.fitBounds(LatLngBounds);
+         });
+       };
+       var myStyle = {
+           "color": "#27ae60",
+           "weight": 3,
+           "opacity": 0.65,
+           "fillColor": "#2ecc71",
+           "fillOpacity": 0.3
+       };
 
     });
 
@@ -523,10 +574,61 @@ Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/
 
     });
 
-    $(".ClosestOnes").click(function(map_2,featureGroup,latlng){
+    $(".ClosestOnes").click(function(){
       //Try reload the data again and then use the newly loaded data to do the closest analysis
       //ClosestGroup = L.GeometryUtil.closestLayerSnap(map_2, featureGroup._layers, latlng);
+      var LayerArray =[];
+      var latlng_1 = [ -75.198051,39.955291];
+      $.ajax(GeojsonParks).done(function(data) {
+         parsedData = JSON.parse(data);
+         //console.log(parsedData.features);
+         featureGroup = L.geoJson(parsedData.features, {
+           style: myStyle,
+           onEachFeature: onEachFeature
+         }).addTo(map_2);
+        //  var LayerArray = jQuery.makeArray(featureGroup._layers);
+        //  console.log(LayerArray);
+          //console.log(featureGroup);
+          //console.log(LayerArray);
+         ClosestGroup = L.GeometryUtil.closest(map_2, LayerArray, latlng_1);
+         //console.log(ClosestGroup);
+         L.circleMarker([latlng_1[1],latlng_1[0]]).addTo(map_2).bindPopup("Given Point").setStyle(BlueMarker);
+         L.circleMarker([ClosestGroup.lng,ClosestGroup.lat],['color','red']).addTo(map_2).bindPopup("Closest to a given point").setStyle(GreenMarker);
+         featureGroup.eachLayer(eachFeatureFunction);
+       });
+       function onEachFeature(feature, layer) {
+         if (feature.properties) {
+             layer.bindPopup("Label:" + feature.properties.label + "<br />" + "Use:" + feature.properties.use_);
+         }
+         var Polygon = feature.geometry.coordinates[0][0];
+         LayerArray.push(Polygon);
+         //console.log(LayerArray);
+       }
+       var eachFeatureFunction = function(layer) {
+         layer.on('click', function (event) {
+           /* =====================
+           The following code will run every time a layer on the map is clicked.
+           Check out layer.feature to see some useful data about the layer that
+           you can use in your application.
+           ===================== */
+           //console.log(layer.feature.properties);
 
+           //var LayerID = featureGroup.getLayerId();
+
+           var LatLngBounds = layer.getBounds();
+           LayerID = layer._leaflet_id;
+           //console.log(LayerID);
+           //console.log(LatLngBounds);
+           map_2.fitBounds(LatLngBounds);
+         });
+       };
+       var myStyle = {
+           "color": "#27ae60",
+           "weight": 3,
+           "opacity": 0.65,
+           "fillColor": "#2ecc71",
+           "fillOpacity": 0.3
+       };
 
     });
 
