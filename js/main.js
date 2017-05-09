@@ -522,7 +522,7 @@ Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/
          featureGroup = L.geoJson(parsedData.features, {
            style: myStyle,
            onEachFeature: onEachFeature
-         }).addTo(map_2);
+         });
         //  var LayerArray = jQuery.makeArray(featureGroup._layers);
         //  console.log(LayerArray);
           //console.log(featureGroup);
@@ -570,6 +570,70 @@ Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/
     });
 
     $(".PinButton").click(function(){
+      var latlng_pin = [];
+      var array_pin =[];
+      //latlng_location = map_2.locate();
+      //console.log(map_2.locate());
+      //map_2.setView([latlng[1],latlng[0]]);
+      map_2.on('click', function(ev) {
+        console.log(ev.latlng); // ev is an event object (MouseEvent in this case)
+        //Pin a new point, get a location and set a pin
+        latlng_pin[0] = ev.latlng.lng;
+        latlng_pin[1] = ev.latlng.lat;
+        //console.log(latlng_pin);
+         L.circleMarker([latlng_pin[1],latlng_pin[0]]).addTo(map_2).bindPopup("Pin Point").setStyle(BlueMarker);
+         $.ajax(GeojsonParks).done(function(data) {
+            parsedData = JSON.parse(data);
+            //console.log(parsedData.features);
+            featureGroup = L.geoJson(parsedData.features, {
+              style: myStyle,
+              onEachFeature: onEachFeature
+            });
+           //  var LayerArray = jQuery.makeArray(featureGroup._layers);
+           //  console.log(LayerArray);
+             //console.log(featureGroup);
+             //console.log(LayerArray);
+            ClosestGroup = L.GeometryUtil.closest(map_2, array_pin, latlng_pin);
+            //console.log(ClosestGroup);
+            //L.circleMarker([latlng_1[1],latlng_1[0]]).addTo(map_2).bindPopup("Given Point").setStyle(BlueMarker);
+            L.circleMarker([ClosestGroup.lng,ClosestGroup.lat],['color','red']).addTo(map_2).bindPopup("Closest to a given point").setStyle(GreenMarker);
+            featureGroup.eachLayer(eachFeatureFunction);
+          });
+          function onEachFeature(feature, layer) {
+            if (feature.properties) {
+                layer.bindPopup("Label:" + feature.properties.label + "<br />" + "Use:" + feature.properties.use_);
+            }
+            var Polygon = feature.geometry.coordinates[0][0];
+            array_pin.push(Polygon);
+            //console.log(LayerArray);
+          }
+          var eachFeatureFunction = function(layer) {
+            layer.on('click', function (event) {
+              /* =====================
+              The following code will run every time a layer on the map is clicked.
+              Check out layer.feature to see some useful data about the layer that
+              you can use in your application.
+              ===================== */
+              //console.log(layer.feature.properties);
+
+              //var LayerID = featureGroup.getLayerId();
+
+              var LatLngBounds = layer.getBounds();
+              LayerID = layer._leaflet_id;
+              //console.log(LayerID);
+              //console.log(LatLngBounds);
+              map_2.fitBounds(LatLngBounds);
+            });
+          };
+          var myStyle = {
+              "color": "#27ae60",
+              "weight": 3,
+              "opacity": 0.65,
+              "fillColor": "#2ecc71",
+              "fillOpacity": 0.3
+          };
+      });
+
 
 
     });
@@ -585,7 +649,7 @@ Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/
          featureGroup = L.geoJson(parsedData.features, {
            style: myStyle,
            onEachFeature: onEachFeature
-         }).addTo(map_2);
+         });
         //  var LayerArray = jQuery.makeArray(featureGroup._layers);
         //  console.log(LayerArray);
           //console.log(featureGroup);
