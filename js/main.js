@@ -1,10 +1,50 @@
 // Leaflet map setup
 var latlng = [ -75.198051,39.955291];
 
+var map_1 = L.map('map_1', {
+  center: [39.952585, -75.162649],
+  zoom: 13
+});
+
+var map_2 = L.map('map_2', {
+  center: [39.952585, -75.162649],
+  zoom: 13
+});
+
+var map_3 = L.map('map_3', {
+  center: [39.952585, -75.162649],
+  zoom: 13
+});
+
+var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  subdomains: 'abcd',
+  minZoom: 0,
+  maxZoom: 20,
+  ext: 'png'
+}).addTo(map_1);
+
+Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  subdomains: 'abcd',
+  minZoom: 0,
+  maxZoom: 20,
+  ext: 'png'
+}).addTo(map_2);
+//Stamen_TonerLite.addTo(map_2);
+L.control.mousePosition().addTo(map_2);
+
+Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  subdomains: 'abcd',
+  minZoom: 0,
+  maxZoom: 20,
+  ext: 'png'
+}).addTo(map_3);
 
 
   function ShowCover(){
-    $('#Cover_Page').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
+    $('.cover').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
     $('.Cover_Headline').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
     $('.Description').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
     $('.StartButton').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
@@ -22,51 +62,59 @@ var latlng = [ -75.198051,39.955291];
     $('.MapDiv').addClass('animated hinge').one('webkitAnimationEnd', function(){ $(this).removeClass('animated hinge');});
     $('.NavDiv').addClass('animated hinge').one('webkitAnimationEnd', function(){ $(this).removeClass('animated hinge');});
     $('.AnaDiv').addClass('animated hinge').one('webkitAnimationEnd', function(){ $(this).removeClass('animated hinge');});
-    $('#Cover_Page').addClass('animated hinge').one('webkitAnimationEnd', function(){ $(this).removeClass('animated hinge');});
+    $('.cover').addClass('animated hinge').one('webkitAnimationEnd', function(){ $(this).removeClass('animated hinge');});
   }
 
+  var cartoUserName = 'boaoxxh';
+  var cartoVizId_1 = '05b2c8b3-a13d-4a21-bfff-c7f12f7d65f0';
+  // var cartoVizId_2 = 'd5d2d506-1587-11e7-92db-0e98b61680bf';
+  //https://boaoxxh.carto.com/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/public_map
+  var cartoVizId_3 = '1a92c9b0-1267-41cd-a7e9-6af9db3685bf';
+  //https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
+  //https://boaoxxh.carto.com/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/public_map
+  //https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
+  //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
+  //https://boaoxxh.carto.com/viz/68bb0e6e-a7b1-11e6-b154-0ecd1babdde5/public_map
+  //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
+  //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
+  //https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json
+  //https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json
+  //https://boaoxxh.carto.com/api/v2/viz/05b2c8b3-a13d-4a21-bfff-c7f12f7d65f0/viz.json
+  var layerUrl = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_1+'/viz.json';
+  //var layerUrl_2 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_2+'/viz.json';
+  var layerUrl_3 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_3+'/viz.json';
+  // var layerUrl_1 = "https://boaoxxh.carto.com/api/v2/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/viz.json";
+  // var layerUrl_3 = "https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json";
+
+  cartodb.createLayer(map_1, layerUrl)
+    .on('done', function(layer) {
+      layer.addTo(map_1);
+    }).on('error', function(err) {
+      console.log(err);
+    });
+
+   // cartodb.createLayer(map_2, layerUrl_2)
+   //    .on('done', function(layer) {
+   //      layer.addTo(map_2);
+   //    }).on('error', function(err) {
+   //      console.log(err);
+   //    });
+   //////////Set up map 2 data and layers
+   //parks polygon layer
+
+
+   cartodb.createLayer(map_3, layerUrl_3)
+     .on('done', function(layer) {
+       layer.addTo(map_3);
+     }).on('error', function(err) {
+       console.log(err);
+     });
 
   $(document).ready(function() {
 
-    var map_1 = L.map('map_1', {
-      center: [39.952585, -75.162649],
-      zoom: 13
-    });
 
-    var map_2 = L.map('map_2', {
-      center: [39.952585, -75.162649],
-      zoom: 13
-    });
 
-    var map_3 = L.map('map_3', {
-      center: [39.952585, -75.162649],
-      zoom: 13
-    });
-
-    var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      subdomains: 'abcd',
-      minZoom: 0,
-      maxZoom: 20,
-      ext: 'png'
-    }).addTo(map_1);
-
-    var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      subdomains: 'abcd',
-      minZoom: 0,
-      maxZoom: 20,
-      ext: 'png'
-    }).addTo(map_2);
-    L.control.mousePosition().addTo(map_2);
-
-    var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      subdomains: 'abcd',
-      minZoom: 0,
-      maxZoom: 20,
-      ext: 'png'
-    }).addTo(map_3);
+  //  Stamen_TonerLite.addTo(map_3);
 
     // To add your Carto visualization, change cartoUserName and cartoVizId to your username and
     // project ID. These values can be found in the URL of your map on Carto:
@@ -84,48 +132,7 @@ var latlng = [ -75.198051,39.955291];
     // To add visualizations created with the Analysis feature, you will need to export the data to a
     // GeoJSON. From there, you can either import the GeoJSON to Carto or use Leaflet's L.geoJson.
 
-    var cartoUserName = 'boaoxxh';
-    var cartoVizId_1 = 'd5d2d506-1587-11e7-92db-0e98b61680bf';
-    // var cartoVizId_2 = 'd5d2d506-1587-11e7-92db-0e98b61680bf';
-    //https://boaoxxh.carto.com/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/public_map
-    var cartoVizId_3 = '1a92c9b0-1267-41cd-a7e9-6af9db3685bf';
-    //https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
-    //https://boaoxxh.carto.com/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/public_map
-    //https://boaoxxh.carto.com/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/public_map
-    //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
-    //https://boaoxxh.carto.com/viz/68bb0e6e-a7b1-11e6-b154-0ecd1babdde5/public_map
-    //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
-    //https://boaoxxh.carto.com/viz/317d594a-10d2-11e7-941d-0ef7f98ade21/public_map
-    //https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json
-    //var layerUrl_1 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_1+'/viz.json';
-    // var layerUrl_2 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_2+'/viz.json';
-    //var layerUrl_3 = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId_3+'/viz.json';
-    var layerUrl_1 = "https://boaoxxh.carto.com/api/v2/viz/d5d2d506-1587-11e7-92db-0e98b61680bf/viz.json";
-    var layerUrl_3 = "https://boaoxxh.carto.com/api/v2/viz/1a92c9b0-1267-41cd-a7e9-6af9db3685bf/viz.json";
 
-    cartodb.createLayer(map_1, layerUrl_1)
-      .on('done', function(layer) {
-        layer.addTo(map_1);
-      }).on('error', function(err) {
-        console.log(err);
-      });
-
-     // cartodb.createLayer(map_2, layerUrl_2)
-     //    .on('done', function(layer) {
-     //      layer.addTo(map_2);
-     //    }).on('error', function(err) {
-     //      console.log(err);
-     //    });
-     //////////Set up map 2 data and layers
-     //parks polygon layer
-
-
-     cartodb.createLayer(map_3, layerUrl_3)
-       .on('done', function(layer) {
-         layer.addTo(map_3);
-       }).on('error', function(err) {
-         console.log(err);
-       });
     // $('.Cover_Headline').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
     // $('.Description').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
     // $('.StartButton').addClass('animated bounceInUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInUp');});
@@ -158,6 +165,7 @@ var latlng = [ -75.198051,39.955291];
       //  var LayerArray = jQuery.makeArray(featureGroup._layers);
       //  console.log(LayerArray);
         //console.log(featureGroup);
+        //console.log(LayerArray);
        ClosestGroup = L.GeometryUtil.closest(map_2, LayerArray, latlng);
        //console.log(ClosestGroup);
        L.circleMarker([latlng[1],latlng[0]]).addTo(map_2).bindPopup("Given Point").setStyle(BlueMarker);
@@ -207,6 +215,7 @@ var latlng = [ -75.198051,39.955291];
     // console.log(WeatherDataUrl);
 
     ShowCover();
+
     $('.MapSideDiv').addClass('animated bounceInLeft').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInLeft');});
     $('.NavSideDiv').addClass('animated bounceInLeft').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInLeft');});
     $('.AnaSideDiv').addClass('animated bounceInLeft').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInLeft');});
@@ -298,6 +307,16 @@ var latlng = [ -75.198051,39.955291];
         $('#map_2').addClass('animated bounceOutUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceOutUp');});
         $('#map_2').css("visibility","hidden");
       }
+      if ($('.ContainBox').css('display') !== 'none') {
+        $('.ContainBox').addClass('animated bounceOutUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceOutUp');});
+        $(".ContainBox").css("visibility","hidden");
+        $('.ClosestOnes').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".ClosestOnes").css("visibility","hidden");
+        $('.Locate').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".Locate").css("visibility","hidden");
+        $('.PinButton').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".PinButton").css("visibility","hidden");
+      }
       //.one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceOutUp');})
       // $('#map').css("visibility","hidden");
       // ShowCover();
@@ -316,6 +335,22 @@ var latlng = [ -75.198051,39.955291];
         $('#map_2').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
         $('#map_2').css("visibility","hidden");
       }
+      if ($('.ClosestOnes').css('display') !== 'none') {
+        $('.ClosestOnes').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".ClosestOnes").css("visibility","hidden");
+      }
+
+      if ($('.ContainBox').css('display') !== 'none') {
+        $('.ContainBox').addClass('animated bounceOutUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceOutUp');});
+        $(".ContainBox").css("visibility","hidden");
+        $('.ClosestOnes').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".ClosestOnes").css("visibility","hidden");
+        $('.Locate').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".Locate").css("visibility","hidden");
+        $('.PinButton').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".PinButton").css("visibility","hidden");
+      }
+
       $('#map_1').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
       $('#map_1').css("visibility","visible");
     });
@@ -330,6 +365,22 @@ var latlng = [ -75.198051,39.955291];
         $('#map_2').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
         $('#map_2').css("visibility","hidden");
       }
+      if ($('.ClosestOnes').css('display') !== 'none') {
+        $('.ClosestOnes').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".ClosestOnes").css("visibility","hidden");
+      }
+
+      if ($('.ContainBox').css('display') !== 'none') {
+        $('.ContainBox').addClass('animated bounceOutUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceOutUp');});
+        $(".ContainBox").css("visibility","hidden");
+        $('.ClosestOnes').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".ClosestOnes").css("visibility","hidden");
+        $('.Locate').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".Locate").css("visibility","hidden");
+        $('.PinButton').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".PinButton").css("visibility","hidden");
+      }
+
       $('#map_1').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
       $('#map_1').css("visibility","visible");
     });
@@ -346,8 +397,15 @@ var latlng = [ -75.198051,39.955291];
       }
       $('#map_2').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
       $('#map_2').css("visibility","visible");
+
       $('.ClosestOnes').addClass('animated zoomIn').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomIn');});
       $(".ClosestOnes").css("visibility","visible");
+      $('.Locate').addClass('animated zoomIn').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomIn');});
+      $(".Locate").css("visibility","visible");
+      $('.PinButton').addClass('animated zoomIn').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomIn');});
+      $(".PinButton").css("visibility","visible");
+      $('.ContainBox').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
+      $(".ContainBox").css("visibility","visible");
     });
     $(".NavSideButton").click(function(){
       if ($('#map_3').css('display') !== 'none') {
@@ -362,6 +420,12 @@ var latlng = [ -75.198051,39.955291];
       $('#map_2').css("visibility","visible");
       $('.ClosestOnes').addClass('animated zoomIn').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomIn');});
       $(".ClosestOnes").css("visibility","visible");
+      $('.Locate').addClass('animated zoomIn').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomIn');});
+      $(".Locate").css("visibility","visible");
+      $('.PinButton').addClass('animated zoomIn').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomIn');});
+      $(".PinButton").css("visibility","visible");
+      $('.ContainBox').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
+      $(".ContainBox").css("visibility","visible");
     });
 
     //Analysis Page
@@ -374,6 +438,22 @@ var latlng = [ -75.198051,39.955291];
         $('#map_2').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
         $('#map_2').css("visibility","hidden");
       }
+      if ($('.ClosestOnes').css('display') !== 'none') {
+        $('.ClosestOnes').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".ClosestOnes").css("visibility","hidden");
+      }
+
+      if ($('.ContainBox').css('display') !== 'none') {
+        $('.ContainBox').addClass('animated bounceOutUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceOutUp');});
+        $(".ContainBox").css("visibility","hidden");
+        $('.ClosestOnes').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".ClosestOnes").css("visibility","hidden");
+        $('.Locate').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".Locate").css("visibility","hidden");
+        $('.PinButton').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".PinButton").css("visibility","hidden");
+      }
+
       $('#map_3').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
       $('#map_3').css("visibility","visible");
     });
@@ -386,13 +466,68 @@ var latlng = [ -75.198051,39.955291];
         $('#map_2').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
         $('#map_2').css("visibility","hidden");
       }
+      if ($('.ClosestOnes').css('display') !== 'none') {
+        $('.ClosestOnes').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".ClosestOnes").css("visibility","hidden");
+      }
+
+      if ($('.ContainBox').css('display') !== 'none') {
+        $('.ContainBox').addClass('animated bounceOutUp').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceOutUp');});
+        $(".ContainBox").css("visibility","hidden");
+        $('.ClosestOnes').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".ClosestOnes").css("visibility","hidden");
+        $('.Locate').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".Locate").css("visibility","hidden");
+        $('.PinButton').addClass('animated zoomOut').one('webkitAnimationEnd', function(){ $(this).removeClass('animated zoomOut');});
+        $(".PinButton").css("visibility","hidden");
+      }
+
       $('#map_3').addClass('animated bounceInDown').one('webkitAnimationEnd', function(){ $(this).removeClass('animated bounceInDown');});
       $('#map_3').css("visibility","visible");
     });
 
-    $(".ClosestOnes").click(function(map_2,featureGroup,latlng){
+    $( ".ClosestOnes" ).mouseover(function(){
+      $(this).css("background-color", "#90a4ae");
+      $(this).css("background-image", "url(css/search_1.png)");
+    });
+    $( ".ClosestOnes" ).mouseout(function(){
+      $(this).css("background-color", "#1e1e1e");
+      $(this).css("background-image", "url(css/search_1.png)");
+    });
 
-      //ClosestGroup = L.GeometryUtil.closestLayerSnap(map_2, featureGroup._layers, latlng);
+    $( ".Locate" ).mouseover(function(){
+      $(this).css("background-color", "#90a4ae");
+      $(this).css("background-image", "url(css/locate.png)");
+    });
+    $( ".Locate" ).mouseout(function(){
+      $(this).css("background-color", "#1e1e1e");
+      $(this).css("background-image", "url(css/locate.png)");
+    });
+
+    $( ".PinButton" ).mouseover(function(){
+      $(this).css("background-color", "#90a4ae");
+      $(this).css("background-image", "url(css/pin.png)");
+    });
+    $( ".PinButton" ).mouseout(function(){
+      $(this).css("background-color", "#1e1e1e");
+      $(this).css("background-image", "url(css/pin.png)");
+    });
+
+    $(".Locate").click(function(){
+
 
     });
+
+    $(".PinButton").click(function(){
+
+
+    });
+
+    $(".ClosestOnes").click(function(map_2,featureGroup,latlng){
+      //Try reload the data again and then use the newly loaded data to do the closest analysis
+      //ClosestGroup = L.GeometryUtil.closestLayerSnap(map_2, featureGroup._layers, latlng);
+
+
+    });
+
   });
